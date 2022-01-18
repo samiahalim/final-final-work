@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>BRMS</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="data_insert_living_area.html">BRMS<span class="logo_colour"><br>Bachelor Rental Management System</span></a></h1>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="data_insert_house_type.html">House Type</a></li>
+          <li class="selected"><a href="data_insert_living_area.html">Living Area</a></li>
+          <li><a href="data_insert_price.html">Price List</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="banner"></div>
+	  <div id="sidebar_container">
+    </div>
+      <div id="content">      
+      <div id="form_settings">
+        <!-- insert the page content here -->
+        <!--  -->
+				<br>
+				<form action="data_insert_living_area.php" method="post" autocomplete="off">
+					<label for="area_name">
+					</label>
+					<input type="area_name" name="area_name" id="area_name" placeholder="Area Name" id="area_name" required>
+					<br>
+					<br>
+					<input type="submit" value="Data Input">
+					<br>
+					<br>
+					<a href="read_living_area.php">Show list</a>
+          <br>
+          <a href="maximum_read_living_area.php">Maximum Living Area for House Rent</a>
+					<br>
+            		<br><br>
+            		<br><br>
+		
+				</form>
+				<br>
+				<p id="result"></p>
+        <!-- Here is ajax code -->
+        <script>
+          $("form").submit(function(e){
+            e.preventDefault();
+            $.post(
+              'data_insert_living_area.php',
+              {
+                area_name: $("#area_name").val()
+              },
+              function(result){
+                if(result=="Successful"){
+                    $("#result").html("Values insert successfully !");
+                    //location.reload(true);
+                    document.querySelector("form").reset();
+                    //https://code.jquery.com/
+                }else{
+                     $("#result").html("Error occured.");
+                }
+              }
+              );
+          });
+        </script>
+      </div>
+    </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="data_insert_house_type.html">House Type</a> | <a href="data_insert_living_area.html">Living Area</a> | <a href="data_insert_price.html">Price List</a></p>
+      <p>Copyright &copy; Bachelor Rental Management System</p>
+    </div>
+  </div>
+</body>
+</html>
